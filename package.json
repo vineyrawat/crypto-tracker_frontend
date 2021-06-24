@@ -2,6 +2,7 @@
   "name": "crypto-tracker_frontend",
   "author": "Vinay Rawat",
   "version": "1.0.0",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
