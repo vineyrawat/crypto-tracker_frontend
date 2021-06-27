@@ -3,10 +3,11 @@ module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./index.html"],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
-  },
-  variants: {
     extend: {
+      colors: {
+        primary: "#5D92F9",
+        primaryDark: "#356AD1",
+      },
       fontFamily: {
         body: [
           "Inter",
@@ -22,7 +23,7 @@ module.exports = {
           "sans-serif",
         ],
         heading: [
-          "Inter",
+          "Poppins",
           "-apple-system",
           "BlinkMacSystemFont",
           "Segoe UI",
@@ -36,6 +37,9 @@ module.exports = {
         ],
       },
     },
+  },
+  variants: {
+    extend: {},
   },
   plugins: [],
 };

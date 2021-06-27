@@ -1,12 +1,13 @@
 import React from "react";
+import Logo from "./Logo";
+import HeaderMenu from "./HeaderMenu";
 
 function HomePageHeader(props) {
   return (
-    <header className="h-14 border-b">
-      <div className="flex justify-between items-center container max-w-7xl mx-auto px-4 h-full">
-        <h2 className="font-bold text-2xl">
-          Crypto<span className="text-yellow-500">Tracker</span>
-        </h2>
+    <header className="pt-5">
+      <div className="flex justify-between items-center flex-col sm:flex-row container max-w-7xl mx-auto px-4 h-full">
+        <Logo />
+        <HeaderMenu />
       </div>
     </header>
   );
