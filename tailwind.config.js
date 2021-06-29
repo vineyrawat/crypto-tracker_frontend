@@ -41,5 +41,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require("tailwindcss-invalid-variant-plugin")],
+  plugins: [],
 };

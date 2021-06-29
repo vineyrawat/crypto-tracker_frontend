@@ -31,6 +31,14 @@ const TextArea = ({ placeholder, name, id, onChange }) => {
   );
 };
 
+const Alert = () => {
+  return (
+    <>
+      <div></div>
+    </>
+  );
+};
+
 function Contact(props) {
   const [loading, setLoading] = useState(false);
 
@@ -39,8 +47,12 @@ function Contact(props) {
   return (
     <div className="flex flex-col container max-w-7xl mx-auto px-4 py-10">
       <h1 className="text-3xl font-heading mb-16">Contact Us</h1>
-      <div className="flex justify-between">
-        <form className="flex md:w-[45%] flex-col" onSubmit={handleSubmit}>
+      <div className="flex">
+        <Alert />
+        <form
+          className="flex w-full md:w-[50%] md:pr-10 flex-col"
+          onSubmit={handleSubmit}
+        >
           <div className="grid sm:grid-cols-2 sm:gap-4">
             <Input name="name" id="name" placeholder="Name" />
             <Input name="email" id="email" placeholder="Email address" />
