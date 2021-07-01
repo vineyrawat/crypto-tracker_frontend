@@ -1,3 +1,5 @@
+const colors = require("tailwindcss/colors");
+
 module.exports = {
   mode: "jit",
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./index.html"],
@@ -7,6 +9,7 @@ module.exports = {
       colors: {
         primary: "#5D92F9",
         primaryDark: "#356AD1",
+        teal: colors.teal,
       },
       fontFamily: {
         body: [
