@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import {
   BsCheckCircle,
   BsExclamationCircle,
@@ -6,7 +7,7 @@ import {
   BsXCircle,
 } from "react-icons/bs";
 
-const Alert = ({ variant, title, message }) => {
+const Alert = ({ variant, title, message, hidden }) => {
   const scheme = () => {
     switch (variant) {
       case "success":
@@ -35,13 +36,20 @@ const Alert = ({ variant, title, message }) => {
 
   return (
     <>
-      <div className={`flex p-3 mb-6 border-l-8 ${scheme()}`}>
-        {icon()}
-        <div>
-          <h2 className="font-semibold text-lg">{title}</h2>
-          <p>{message}</p>
+      {hidden || (
+        <div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ type: "ease-out" }}
+          className={`flex p-3 mb-6 border-l-8 ${scheme()}`}
+        >
+          {icon()}
+          <div>
+            <h2 className="font-semibold text-lg">{title}</h2>
+            <p>{message}</p>
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 };
