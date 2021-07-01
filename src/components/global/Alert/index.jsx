@@ -38,9 +38,6 @@ const Alert = ({ variant, title, message, hidden }) => {
     <>
       {hidden || (
         <div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ type: "ease-out" }}
           className={`flex p-3 w-full mb-6 border-l-8 bg-opacity-10 ${scheme()}`}
         >
           {icon()}
