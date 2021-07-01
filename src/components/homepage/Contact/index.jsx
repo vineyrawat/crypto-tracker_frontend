@@ -2,14 +2,6 @@ import React from "react";
 import Form from "./form";
 import ContactIllustration from "../../../assets/undraw_contact_us_15o2.svg";
 
-const Alert = () => {
-  return (
-    <>
-      <div></div>
-    </>
-  );
-};
-
 function Contact(props) {
   return (
     <div className="flex flex-col container max-w-7xl mx-auto px-4 py-10">

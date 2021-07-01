@@ -4,7 +4,9 @@ const MenuItem = ({ children }) => {
   return (
     <>
       <a href="#">
-        <li className="cursor-pointer text-xl px-3 sm:px-3 py-2">{children}</li>
+        <li className="cursor-pointer text-lg sm:text-xl px-3 sm:px-3 py-2">
+          {children}
+        </li>
       </a>
     </>
   );

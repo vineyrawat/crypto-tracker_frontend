@@ -11,15 +11,15 @@ const Alert = ({ variant, title, message, hidden }) => {
   const scheme = () => {
     switch (variant) {
       case "success":
-        return " bg-green-50 border-green-400 text-green-800";
+        return " bg-green-400 border-green-400 text-green-800 dark:text-green-400";
       case "danger":
-        return " bg-red-50 border-red-400 text-red-800";
+        return " bg-red-400 border-red-400 text-red-800 dark:text-red-400";
       case "warning":
-        return " bg-yellow-50 border-yellow-400 text-yellow-700";
+        return " bg-yellow-400 border-yellow-400 text-yellow-700 dark:text-yellow-400";
       case "info":
-        return " bg-teal-50 border-teal-400 text-teal-700";
+        return " bg-teal-400 border-teal-400 text-teal-700 dark:text-teal-400";
       default:
-        return " bg-gray-100 border-gray-400 text-gray-800";
+        return " bg-gray-100 border-gray-400 text-gray-800 dark:text-green-gray-100";
     }
   };
 
@@ -41,7 +41,7 @@ const Alert = ({ variant, title, message, hidden }) => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: "ease-out" }}
-          className={`flex p-3 mb-6 border-l-8 ${scheme()}`}
+          className={`flex p-3 w-full mb-6 border-l-8 bg-opacity-10 ${scheme()}`}
         >
           {icon()}
           <div>
