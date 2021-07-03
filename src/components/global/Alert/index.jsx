@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
 import {
   BsCheckCircle,
   BsExclamationCircle,
@@ -7,9 +6,9 @@ import {
   BsXCircle,
 } from "react-icons/bs";
 
-const Alert = ({ variant, title, message, hidden }) => {
+const Alert = ({ type, title, message, hidden, className }) => {
   const scheme = () => {
-    switch (variant) {
+    switch (type) {
       case "success":
         return " bg-green-400 border-green-400 text-green-800 dark:text-green-400";
       case "danger":
@@ -19,28 +18,27 @@ const Alert = ({ variant, title, message, hidden }) => {
       case "info":
         return " bg-teal-400 border-teal-400 text-teal-700 dark:text-teal-400";
       default:
-        return " bg-gray-100 border-gray-400 text-gray-800 dark:text-green-gray-100";
+        return "bg-gray-100 border-gray-400 text-gray-800 dark:text-gray-100 ";
     }
   };
 
   const icon = () => {
-    if (variant === "danger")
-      return <BsXCircle className="my-2 mr-2 w-6 h-6" size={25} />;
-    if (variant === "warning")
-      return <BsExclamationCircle className="my-2 mr-2 w-6 h-6" size={25} />;
-    if (variant === "success")
-      return <BsCheckCircle className="my-2 mr-2 w-6 h-6" size={25} />;
-    if (variant === "info")
-      return <BsQuestionCircle className="my-2 mr-2 w-6 h-6" size={25} />;
+    if (type === "danger") return <BsXCircle className="w-full" size={25} />;
+    if (type === "warning")
+      return <BsExclamationCircle className="w-full" size={25} />;
+    if (type === "success")
+      return <BsCheckCircle className="w-full" size={25} />;
+    if (type === "info")
+      return <BsQuestionCircle className="w-full" size={25} />;
   };
 
   return (
     <>
-      {hidden || (
+      {(!title && !message) || hidden || (
         <div
-          className={`flex p-3 w-full mb-6 border-l-8 bg-opacity-10 ${scheme()}`}
+          className={`flex p-3 w-full border-l-8 bg-opacity-10 ${scheme()} ${className}`}
         >
-          {icon()}
+          <div className="min-w-max mr-2 mt-1">{icon()}</div>
           <div>
             <h2 className="font-semibold text-lg">{title}</h2>
             <p>{message}</p>

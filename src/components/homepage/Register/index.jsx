@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Alert from "../../global/Alert";
 import Button from "../../global/Button";
 import FormInput from "../../global/Form/FormInput";
 
@@ -17,12 +16,6 @@ function RegisterForm(props) {
         Create an account
       </h1>
       <form className="flex flex-col max-w-sm w-full" onSubmit={handleRegister}>
-        <Alert
-          hidden
-          variant="info"
-          title="This is title"
-          message="This is my message and this is really really long."
-        />
         <FormInput
           autoComplete="off"
           autoFocus
