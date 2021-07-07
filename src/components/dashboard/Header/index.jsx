@@ -33,7 +33,7 @@ function DashboardHeader(props) {
 
   return (
     <>
-      <div className="bg-white dark:bg-gray-800 shadow-sm">
+      <div className="bg-white sticky top-0 dark:bg-gray-800 shadow-sm">
         <div className="h-16 flex justify-between items-center mx-5">
           <Logo className="text-[20px]" />
           <User
@@ -42,7 +42,7 @@ function DashboardHeader(props) {
             subtitle="vineyrawat@yahoo.com"
           />
         </div>
-        <div className="h-10 flex justify-center fixed bottom-0 w-full dark:bg-gray-800 bg-white sm:justify-start sm:static border-t dark:border-gray-700 px-5">
+        <div className="h-10 flex dark:bg-gray-800 bg-white sm:justify-start sm:static border-t dark:border-gray-700 px-5">
           <MenuItem
             to="/dashboard"
             active={active === "watchlist" ? true : false}

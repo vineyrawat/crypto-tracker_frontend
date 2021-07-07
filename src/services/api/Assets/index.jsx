@@ -1,9 +1,14 @@
 import axios from "axios";
-axios = axios.create({ baseURL: "localhost:5500" });
+const instance = axios.create({ baseURL: "http://localhost:5500" });
 
 class AssetRequest {
-  assets = () => {
-    axios.get("/assets");
+  getAll = async () => {
+    try {
+      const data = await instance.get("/assets");
+      return [data, null];
+    } catch (error) {
+      return [null, error];
+    }
   };
 }
 
