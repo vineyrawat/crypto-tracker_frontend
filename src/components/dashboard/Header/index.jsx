@@ -1,25 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../../homepage/Header/Logo";
 import User from "./User";
+import { Link, useHistory } from "react-router-dom";
 
-const MenuItem = ({ children, active, onClick }) => {
+const MenuItem = ({ children, active, onClick, to }) => {
   return (
-    <button
-      onClick={onClick}
-      className={`h-full px-3 flex items-center transition-colors focus:outline-none cursor-pointer justify-center dark:text-gray-300 tracking-wider uppercase font-semibold border-b-2  ${
-        active
-          ? "border-primary bg-primary bg-opacity-10 text-primary dark:text-primary"
-          : "border-transparent"
-      }`}
-    >
-      {children}
-    </button>
+    <Link to={to}>
+      <button
+        onClick={onClick}
+        className={`h-full px-3 flex items-center transition-colors focus:outline-none cursor-pointer justify-center dark:text-gray-300 tracking-wider uppercase font-semibold border-b-2  ${
+          active
+            ? "border-primary bg-primary bg-opacity-10 text-primary dark:text-primary"
+            : "border-transparent"
+        }`}
+      >
+        {children}
+      </button>
+    </Link>
   );
 };
 
 function DashboardHeader(props) {
   const [active, setActive] = useState("watchlist");
   const width = window.innerWidth;
+  const { location } = useHistory();
+
+  useEffect(() => {
+    if (location.pathname === "/dashboard/browse") return setActive("browse");
+    if (location.pathname === "/dashboard/profile") return setActive("profile");
+    return setActive("watchlist");
+  }, [location.pathname]);
 
   return (
     <>
@@ -34,20 +44,20 @@ function DashboardHeader(props) {
         </div>
         <div className="h-10 flex justify-center fixed bottom-0 w-full dark:bg-gray-800 bg-white sm:justify-start sm:static border-t dark:border-gray-700 px-5">
           <MenuItem
+            to="/dashboard"
             active={active === "watchlist" ? true : false}
-            onClick={() => setActive("watchlist")}
           >
             Watchlist
           </MenuItem>
           <MenuItem
+            to="/dashboard/browse"
             active={active === "browse" ? true : false}
-            onClick={() => setActive("browse")}
           >
             Browse
           </MenuItem>
           <MenuItem
+            to="/dashboard/profile"
             active={active === "profile" ? true : false}
-            onClick={() => setActive("profile")}
           >
             Profile
           </MenuItem>
