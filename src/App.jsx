@@ -1,20 +1,29 @@
-import React from "react";
-import Dashboard from "./pages/dashboard";
-import { useTheme } from "./components/hooks";
-import { FiMoon, FiSun } from "react-icons/fi";
-// import HomePage from "./pages/homapage";
+import React, { lazy, Suspense } from "react";
+import ThemeToggleButton from "./components/global/ThemeButton";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import LazyProgress from "./components/global/LazyProgress";
+const HomePage = lazy(() => import("./pages/homapage"));
+const Dashboard = lazy(() => import("./pages/dashboard"));
+
 function App() {
-  const { theme, themeToggle } = useTheme();
   return (
-    <div className="min-h-screen font-body dark:bg-gray-900  dark:text-gray-200">
-      <button
-        className="fixed right-10 bottom-10 h-12 w-12 focus:outline-none rounded-full flex items-center justify-center bg-white shadow-lg dark:bg-gray-700 border-2 border-gray-400"
-        onClick={themeToggle}
-      >
-        {theme === "dark" ? <FiSun size={25} /> : <FiMoon size={25} />}
-      </button>
-      <Dashboard />
-    </div>
+    <BrowserRouter>
+      <div className="min-h-screen font-body dark:bg-gray-900  dark:text-gray-200">
+        <ThemeToggleButton />
+        <Suspense fallback={<LazyProgress />}>
+          <Switch>
+            <Route path="/" exact component={HomePage} />
+            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/login">
+              <HomePage view="login" />
+            </Route>
+            <Route path="/register">
+              <HomePage view="register" />
+            </Route>
+          </Switch>
+        </Suspense>
+      </div>
+    </BrowserRouter>
   );
 }
 

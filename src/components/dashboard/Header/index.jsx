@@ -6,7 +6,7 @@ const MenuItem = ({ children, active, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className={`h-full px-3 flex items-center transition-colors focus:outline-none justify-center dark:text-gray-300 tracking-wider uppercase font-semibold border-b-2  ${
+      className={`h-full px-3 flex items-center transition-colors focus:outline-none cursor-pointer justify-center dark:text-gray-300 tracking-wider uppercase font-semibold border-b-2  ${
         active
           ? "border-primary bg-primary bg-opacity-10 text-primary dark:text-primary"
           : "border-transparent"
@@ -19,14 +19,20 @@ const MenuItem = ({ children, active, onClick }) => {
 
 function DashboardHeader(props) {
   const [active, setActive] = useState("watchlist");
+  const width = window.innerWidth;
+
   return (
     <>
       <div className="bg-white dark:bg-gray-800 shadow-sm">
         <div className="h-16 flex justify-between items-center mx-5">
           <Logo className="text-[20px]" />
-          <User title="Vinay Rawat" subtitle="vineyrawat@yahoo.com" />
+          <User
+            small={width < 530 ? true : false}
+            title="Vinay Rawat"
+            subtitle="vineyrawat@yahoo.com"
+          />
         </div>
-        <div className="h-10 flex justify-center fixed bottom-0 w-full bg-gray-800 sm:justify-start sm:static border-t dark:border-gray-700 px-5">
+        <div className="h-10 flex justify-center fixed bottom-0 w-full dark:bg-gray-800 bg-white sm:justify-start sm:static border-t dark:border-gray-700 px-5">
           <MenuItem
             active={active === "watchlist" ? true : false}
             onClick={() => setActive("watchlist")}
