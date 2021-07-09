@@ -21,19 +21,19 @@ const MenuItem = ({ children, active, onClick, to }) => {
 };
 
 function DashboardHeader(props) {
-  const [active, setActive] = useState("watchlist");
+  const [active, setActive] = useState(null);
   const width = window.innerWidth;
   const { location } = useHistory();
 
   useEffect(() => {
     if (location.pathname === "/dashboard/browse") return setActive("browse");
     if (location.pathname === "/dashboard/profile") return setActive("profile");
-    return setActive("watchlist");
+    if (location.pathname === "/dashboard") return setActive("watchlist");
   }, [location.pathname]);
 
   return (
     <>
-      <div className="bg-white sticky top-0 dark:bg-gray-800 shadow-sm">
+      <div className="bg-white sticky top-0 z-10 dark:bg-gray-800 shadow-sm">
         <div className="h-16 flex justify-between items-center mx-5">
           <Logo className="text-[20px]" />
           <User

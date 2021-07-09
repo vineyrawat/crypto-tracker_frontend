@@ -10,6 +10,14 @@ class AssetRequest {
       return [null, error];
     }
   };
+  get = async (id) => {
+    try {
+      const data = await instance.get("/assets/" + id);
+      return [data, null];
+    } catch (error) {
+      return [null, error];
+    }
+  };
 }
 
 export default AssetRequest;

@@ -12,10 +12,10 @@ function Button({
   size,
 }) {
   const variants = {
-    primary: "bg-primary text-white focus:bg-primaryDark dark:text-gray-800",
-    gray: "bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-200",
+    primary: "border-primary focus:border-primaryDark dark:text-gray-800",
+    gray: "border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-200",
     loading:
-      "bg-gray-100 dark:bg-gray-700 text-gray-600 cursor-not-allowed select-none",
+      "border-gray-200 dark:border-gray-600 text-gray-600 cursor-not-allowed select-none",
   };
 
   const scheme = () => {
@@ -49,9 +49,9 @@ function Button({
       <button
         type={type}
         onClick={onClick}
-        className={`flex items-center justify-center  ${
+        className={`flex border items-center justify-center  ${
           setSize()[0]
-        } font-semibold hover:opacity-90 tracking-wide focus:outline-none focus:ring-2 focus:ring-primary ${variant} ${
+        } font-semibold hover:opacity-90 tracking-wide focus:outline-none ${variant} ${
           isFullWidth ? "w-full" : "w-max"
         } ${className}`}
         disabled={isLoading ? true : disabled}

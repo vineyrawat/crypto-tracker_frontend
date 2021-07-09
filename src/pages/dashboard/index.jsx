@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from "react";
 import DashboardHeader from "../../components/dashboard/Header";
 import { useLocation, Switch, Route } from "react-router-dom";
 import LazyProgress from "../../components/global/LazyProgress";
+const AssetDetail = lazy(() => import("./AssetDetail"));
 const Browse = lazy(() => import("./browse"));
 
 function Dashboard(props) {
@@ -11,8 +12,11 @@ function Dashboard(props) {
       <DashboardHeader />
       <Suspense fallback={<LazyProgress />}>
         <Switch>
-          <Route path="/dashboard/browse">
+          <Route exact path="/dashboard/browse">
             <Browse />
+          </Route>
+          <Route path="/dashboard/browse/:id">
+            <AssetDetail />
           </Route>
         </Switch>
       </Suspense>

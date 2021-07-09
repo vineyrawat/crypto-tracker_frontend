@@ -1,9 +1,12 @@
 import React from "react";
 import AssetTablePlaceholder from "./AssetTablePlaceholder";
 import TableItem from "./TableItem";
+import { Link, useHistory } from "react-router-dom";
 import { BiCaretUp, BiCaretDown } from "react-icons/bi";
+import StarButton from "./StarButton";
 
 function AssetTable({ assets }) {
+  const { location } = useHistory();
   return (
     <table className="table bg-white dark:bg-gray-800 w-full">
       <thead>
@@ -34,25 +37,31 @@ function AssetTable({ assets }) {
       <tbody>
         {assets ? (
           assets.map((i) => (
-            <tr>
+            <tr key={i.id}>
               <TableItem center>{i.rank}</TableItem>
               <TableItem left>
-                <div className="flex items-center">
-                  <div
-                    className="h-10 w-10 mr-3 dark:bg-gray-100 dark:rounded-md"
-                    style={{
-                      backgroundImage: `url(
+                <Link to={`${location.pathname}/${i.id}`}>
+                  <div className="flex items-center">
+                    <div
+                      className="h-10 w-10 mr-3 dark:bg-gray-100 dark:rounded-md"
+                      style={{
+                        backgroundImage: `url(
                           https://cryptologos.cc/logos/${
                             i.id
                           }-${i.symbol.toLowerCase()}-logo.svg?v=012)`,
-                      backgroundSize: "contain",
-                      backgroundPosition: "center",
-                      backgroundRepeat: "no-repeat",
-                    }}
-                  />
-                  <span className="font-medium">{i.name}</span>
-                  <span className="ml-2 text-sm text-gray-400">{i.symbol}</span>
-                </div>
+                        backgroundSize: "contain",
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat",
+                      }}
+                    />
+                    <span className="font-medium hover:underline">
+                      {i.name}
+                    </span>
+                    <span className="ml-2 text-sm text-gray-400">
+                      {i.symbol}
+                    </span>
+                  </div>
+                </Link>
               </TableItem>
               <TableItem>${Number(i.priceUsd).toFixed(2)}</TableItem>
               <TableItem>
@@ -74,6 +83,9 @@ function AssetTable({ assets }) {
               </TableItem>
               <TableItem>${Number(i.marketCapUsd).toFixed(2)}</TableItem>
               <TableItem>${Number(i.volumeUsd24Hr).toFixed(2)}</TableItem>
+              <TableItem>
+                <StarButton symbol={i.symbol} />
+              </TableItem>
             </tr>
           ))
         ) : (

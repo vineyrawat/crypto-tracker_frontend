@@ -6,7 +6,7 @@ np.configure({ showSpinner: false });
 const LazyProgress = () => {
   useEffect(() => {
     np.start();
-    np.set(0.3);
+    np.set(0.4);
     return () => {
       np.done();
     };
