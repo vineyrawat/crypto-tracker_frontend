@@ -4,6 +4,7 @@ import TableItem from "./TableItem";
 import { Link, useHistory } from "react-router-dom";
 import { BiCaretUp, BiCaretDown } from "react-icons/bi";
 import StarButton from "./StarButton";
+import { UserProvider } from "../../../../userContext";
 
 function AssetTable({ assets }) {
   const { location } = useHistory();
@@ -84,7 +85,9 @@ function AssetTable({ assets }) {
               <TableItem>${Number(i.marketCapUsd).toFixed(2)}</TableItem>
               <TableItem>${Number(i.volumeUsd24Hr).toFixed(2)}</TableItem>
               <TableItem>
-                <StarButton symbol={i.symbol} />
+                <UserProvider>
+                  <StarButton symbol={i.symbol} />
+                </UserProvider>
               </TableItem>
             </tr>
           ))

@@ -3,9 +3,9 @@ import Logo from "../../homepage/Header/Logo";
 import User from "./User";
 import { Link, useHistory } from "react-router-dom";
 
-const MenuItem = ({ children, active, onClick, to }) => {
+const MenuItem = ({ children, active, onClick }) => {
   return (
-    <Link to={to}>
+    <>
       <button
         onClick={onClick}
         className={`h-full px-3 flex items-center transition-colors focus:outline-none cursor-pointer justify-center dark:text-gray-300 tracking-wider uppercase font-semibold border-b-2  ${
@@ -16,21 +16,16 @@ const MenuItem = ({ children, active, onClick, to }) => {
       >
         {children}
       </button>
-    </Link>
+    </>
   );
 };
 
-function DashboardHeader(props) {
+function DashboardHeader({ user, setView, view }) {
   const [active, setActive] = useState(null);
   const width = window.innerWidth;
-  const { location } = useHistory();
-
   useEffect(() => {
-    if (location.pathname === "/dashboard/browse") return setActive("browse");
-    if (location.pathname === "/dashboard/profile") return setActive("profile");
-    if (location.pathname === "/dashboard") return setActive("watchlist");
-  }, [location.pathname]);
-
+    setActive(view);
+  }, [view]);
   return (
     <>
       <div className="bg-white sticky top-0 z-10 dark:bg-gray-800 shadow-sm">
@@ -38,25 +33,25 @@ function DashboardHeader(props) {
           <Logo className="text-[20px]" />
           <User
             small={width < 530 ? true : false}
-            title="Vinay Rawat"
-            subtitle="vineyrawat@yahoo.com"
+            title={user.name}
+            subtitle={user.email}
           />
         </div>
         <div className="h-10 flex dark:bg-gray-800 bg-white sm:justify-start sm:static border-t dark:border-gray-700 px-5">
           <MenuItem
-            to="/dashboard"
+            onClick={() => setView("watchlist")}
             active={active === "watchlist" ? true : false}
           >
             Watchlist
           </MenuItem>
           <MenuItem
-            to="/dashboard/browse"
+            onClick={() => setView("browse")}
             active={active === "browse" ? true : false}
           >
             Browse
           </MenuItem>
           <MenuItem
-            to="/dashboard/profile"
+            onClick={() => setView("profile")}
             active={active === "profile" ? true : false}
           >
             Profile
