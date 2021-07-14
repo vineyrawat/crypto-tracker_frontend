@@ -13,4 +13,22 @@ const login = async (email, password) => {
   }
 };
 
-export { login };
+const register = async (name, email, password) => {
+  try {
+    const data = await instance.post("/", { name, email, password });
+    return [data, null];
+  } catch (error) {
+    return [null, error];
+  }
+};
+
+const getWatchlist = async (userEmail) => {
+  try {
+    const data = await instance.get(`/watchlist/${userEmail}`);
+    return [data, null];
+  } catch (error) {
+    return [null, error];
+  }
+};
+
+export { login, register, getWatchlist };

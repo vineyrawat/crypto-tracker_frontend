@@ -1,21 +1,8 @@
-import React, { useEffect, useState } from "react";
-import AssetRequest from "../../../../services/api/Assets";
+import React from "react";
 import AssetTable from "./AssetTable";
 import Button from "../../../global/Button";
 
-function Assets(props) {
-  const [assets, setAssets] = useState(null);
-  const [error, setError] = useState(null);
-
-  const asset = new AssetRequest();
-
-  useEffect(async () => {
-    const [data, error] = await asset.getAll();
-    if (error) return setError(error.message);
-    if (data.data.status !== "success") return setError(data.data.error);
-    setAssets(data.data.response.data);
-  }, []);
-
+function Assets({ error, assets, watchlist }) {
   return (
     <div className="overflow-x-auto rounded-md shadow-sm">
       {error ? (
@@ -24,10 +11,10 @@ function Assets(props) {
           <h2 className="text-2xl font-light opacity-50 mb-6 text-center">
             {error}
           </h2>
-          <Button onClick={() => window.location.reload(false)}>Retry</Button>
+          <Button onClick={() => window.location.reload()}>Retry</Button>
         </div>
       ) : (
-        <AssetTable assets={assets} />
+        <AssetTable assets={assets} watchlist={watchlist} />
       )}
     </div>
   );

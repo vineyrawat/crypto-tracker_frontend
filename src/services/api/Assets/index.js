@@ -18,6 +18,14 @@ class AssetRequest {
       return [null, error];
     }
   };
+  getWatchlist = async (watchlist) => {
+    try {
+      const data = await instance.post("/assets/", { watchlist });
+      return [data, null];
+    } catch (error) {
+      return [null, error];
+    }
+  };
 }
 
 export default AssetRequest;

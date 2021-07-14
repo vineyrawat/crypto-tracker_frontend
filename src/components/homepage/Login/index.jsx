@@ -3,6 +3,7 @@ import Button from "../../global/Button";
 import FormInput from "../../global/Form/FormInput";
 import * as auth from "../../../services/api/Auth";
 import Alert from "../../global/Alert";
+import { Link } from "react-router-dom";
 
 function LoginForm(props) {
   const [loading, setLoading] = useState(false);
@@ -23,17 +24,24 @@ function LoginForm(props) {
     }
     const [data, error] = await auth.login(email, password);
     if (error) {
+      setStatus({
+        type: "danger",
+        title: "An error has occured",
+        message: error.message,
+      });
+      return setLoading(false);
+    }
+    // console.log(data.data);
+    if (data.data.status === "failure") {
       setLoading(false);
       return setStatus({
         type: "danger",
-        title: "Invalid email or password",
-        message:
-          "Entered email and password are invalid. Please provide correct email and password",
+        title: data.data.error,
       });
     }
-    setStatus({ type: "success", title: "Login success" });
-    setLoading(null);
+    setLoading(false);
     localStorage.setItem("token", data.data.token);
+    setStatus({ type: "success", title: "Login success" });
     window.location = "/dashboard";
   };
 
@@ -63,9 +71,11 @@ function LoginForm(props) {
           Login
         </Button>
         <span className="mb-5" />
-        <Button type="button" isFullWidth variant="gray">
-          Create an account
-        </Button>
+        <Link to="/register">
+          <Button type="button" isFullWidth variant="gray">
+            Create an account
+          </Button>
+        </Link>
       </form>
     </div>
   );
