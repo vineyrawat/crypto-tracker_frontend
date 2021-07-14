@@ -4,6 +4,7 @@ import axios from "axios";
 
 export default function PriceChart({ id, name }) {
   const [priceData, setPriceData] = useState(null);
+  const [error, setError] = useState(null);
   useEffect(() => {
     let days = 30;
     const labels = () => {
@@ -34,7 +35,10 @@ export default function PriceChart({ id, name }) {
           ],
         })
       )
-      .catch();
+      .catch((err) => {
+        if (err.response.status === 404)
+          setError(`Chart not found for ${name}`);
+      });
   }, []);
   return (
     <>
@@ -42,7 +46,11 @@ export default function PriceChart({ id, name }) {
         <Line data={priceData} />
       ) : (
         <div className="h-28 w-full flex items-center font-medium text-lg justify-center">
-          Loading chart...
+          {error ? (
+            error
+          ) : (
+            <div className="w-6 h-6 border-2 border-primary rounded-full animate-spin border-b-[transparent]"></div>
+          )}
         </div>
       )}
     </>

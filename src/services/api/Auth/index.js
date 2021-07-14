@@ -31,4 +31,19 @@ const getWatchlist = async (userEmail) => {
   }
 };
 
-export { login, register, getWatchlist };
+const watchlist = {
+  add(item) {
+    return instance.post("/watchlist/add", {
+      token: localStorage.getItem("token"),
+      item: item,
+    });
+  },
+  remove(item) {
+    return instance.post("/watchlist/remove", {
+      token: localStorage.getItem("token"),
+      item: item,
+    });
+  },
+};
+
+export { login, register, getWatchlist, watchlist };

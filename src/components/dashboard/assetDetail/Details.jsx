@@ -1,7 +1,6 @@
 import React from "react";
 import AssetDetailsPlaceholder from "../../../components/dashboard/assetDetail/AssetDetailsPlaceholder";
 import { BsCaretUpFill, BsCaretDownFill } from "react-icons/bs";
-import StarButton from "../browse/Assets/StarButton";
 import PriceChart from "./PriceChart";
 
 function Details({ data, watchlist }) {
@@ -22,9 +21,6 @@ function Details({ data, watchlist }) {
                 {data.name}
               </h1>
               <h2 className="text-xl opacity-50 ml-2">{data.symbol}</h2>
-              <span className="sm:ml-2 ml-auto">
-                <StarButton symbol={data.symbol} watchlist={watchlist} />
-              </span>
             </div>
             <div className="flex mt-3 items-center">
               <h1 className="text-2xl font-heading font-semibold ">

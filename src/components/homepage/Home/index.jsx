@@ -1,5 +1,6 @@
 import { BsArrowRightShort } from "react-icons/bs";
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Home(props) {
   return (
@@ -9,10 +10,12 @@ function Home(props) {
         <br />
         on the go
       </h1>
-      <button className="text-white flex justify-center bg-primary items-center font-medium text-xl rounded-full py-2 px-5 hover:bg-opacity-90 focus:bg-primaryDark">
-        <span>Get Started</span>
-        <BsArrowRightShort size={40} />
-      </button>
+      <Link to="/register">
+        <button className="text-white flex justify-center bg-primary items-center font-medium text-xl rounded-full py-2 px-5 hover:bg-opacity-90 focus:bg-primaryDark">
+          <span>Get Started</span>
+          <BsArrowRightShort size={40} />
+        </button>
+      </Link>
     </div>
   );
 }
