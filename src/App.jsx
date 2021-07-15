@@ -1,5 +1,4 @@
 import React, { lazy, Suspense, useContext } from "react";
-import ThemeToggleButton from "./components/global/ThemeButton";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import LazyProgress from "./components/global/LazyProgress";
 import { UserContext } from "./userContext";
@@ -13,7 +12,6 @@ function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen font-body dark:bg-gray-900  dark:text-gray-200">
-        <ThemeToggleButton />
         <Suspense fallback={<LazyProgress />}>
           <Switch>
             <Route path="/" exact>

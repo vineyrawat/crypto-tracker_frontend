@@ -4,7 +4,7 @@ import Button from "../../../global/Button/ButtonOutline";
 import { UserContext } from "../../../../userContext";
 import { watchlist as wlist } from "../../../../services/api/Auth";
 
-function StarButton({ symbol, watchlist }) {
+function StarButton({ symbol, watchlist, size, isFullWidth }) {
   const [loading, setLoading] = useState(false);
   const [starred, setStarred] = useState(false);
   const [user] = useContext(UserContext);
@@ -43,10 +43,10 @@ function StarButton({ symbol, watchlist }) {
     <Button
       onClick={toggleStar}
       isLoading={loading}
-      isFullWidth
+      isFullWidth={isFullWidth}
       variant={starred ? "primary" : "gray"}
-      className="rounded-full mx-auto"
-      size="sm"
+      className="rounded-full"
+      size={size || "sm"}
     >
       {starred ? (
         <BsStarFill className="text-primary text-lg" />
