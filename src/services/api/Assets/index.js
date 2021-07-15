@@ -1,5 +1,5 @@
 import axios from "axios";
-const instance = axios.create({ baseURL: "http://localhost:5500" });
+const instance = axios.create({ baseURL: "https://crypto-tracker-vinay.herokuapp.com/" });
 
 class AssetRequest {
   getAll = async () => {
