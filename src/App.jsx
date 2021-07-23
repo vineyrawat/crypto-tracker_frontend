@@ -1,5 +1,11 @@
 import React, { lazy, Suspense, useContext } from "react";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter,
+  HashRouter,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import LazyProgress from "./components/global/LazyProgress";
 import { UserContext } from "./userContext";
 const HomePage = lazy(() => import("./pages/homapage"));
@@ -10,7 +16,7 @@ function App() {
   const [user, token] = useContext(UserContext);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="min-h-screen font-body dark:bg-gray-900  dark:text-gray-200">
         <Suspense fallback={<LazyProgress />}>
           <Switch>
@@ -37,7 +43,7 @@ function App() {
           </Switch>
         </Suspense>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

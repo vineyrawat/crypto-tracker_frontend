@@ -51,7 +51,7 @@ const AssetItem = ({ data, watchlist, setDetail }) => {
   );
 };
 
-function Watchlist({ user, watchlist }) {
+function Watchlist({ watchlist }) {
   const [watchAssets, setWatchAssets] = useState(null);
   const [detail, setDetail] = useState(null);
 
