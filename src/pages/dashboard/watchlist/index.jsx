@@ -86,7 +86,7 @@ function Watchlist({ watchlist }) {
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                     {watchlist.map((i) => {
                       return (
-                        <div className="h-60 bg-gray-100 dark:bg-gray-800 dark:border-0 animate-pulse border rounded-lg" />
+                        <div className="h-60 bg-white dark:bg-gray-800 dark:border-0 animate-pulse border rounded-lg" />
                       );
                     })}
                   </div>
